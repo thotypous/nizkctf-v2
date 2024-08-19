@@ -99,7 +99,7 @@ const teams: Database['teams'] = {
           throw new Error(err.message)
         }
       } else {
-        throw new Error(err)
+        throw err
       }
     }
   },
@@ -258,7 +258,7 @@ const solves: Database['solves'] = {
           throw new Error(err.message)
         }
       } else {
-        throw new Error(err)
+        throw err
       }
     }
   },

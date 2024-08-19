@@ -154,7 +154,7 @@ const prepareDatabase = (
           }
         }
       } catch (err) {
-        throw new (resolveFirebaseError(err))(err.message)
+        throw new (resolveFirebaseError(err as FirebaseError))((err as FirebaseError).message)
       }
     },
     register: async ({ shareInfo, uid }) => {
@@ -178,7 +178,7 @@ const prepareDatabase = (
       try {
         return await getChallenges()
       } catch (err) {
-        throw new (resolveFirebaseError(err))(err.message)
+        throw new (resolveFirebaseError(err as FirebaseError))((err as FirebaseError).message)
       }
     },
     get: async id => {
@@ -207,7 +207,7 @@ const prepareDatabase = (
         if (err instanceof NotFoundError) {
           throw err
         }
-        throw new (resolveFirebaseError(err))(err.message)
+        throw new (resolveFirebaseError(err as FirebaseError))((err as FirebaseError).message)
       }
     }
   },
@@ -225,12 +225,12 @@ const prepareDatabase = (
       try {
         return await getSolves()
       } catch (err) {
-        throw new (resolveFirebaseError(err))(err.message)
+        throw new (resolveFirebaseError(err as FirebaseError))((err as FirebaseError).message)
       }
     },
     allWithProof: async () => {
       const getSolves = async () => {
-        const solves: Array<{ teamId: string, moment: number, flag: string, challengeId: string }> = []
+        const solves: Array<{ teamId: string, moment: number, flag: string, challengeId: string, proof: string }> = []
 
         const docs = await firestore.collection('solves').get()
 
@@ -238,7 +238,7 @@ const prepareDatabase = (
           const items = Object.entries(doc.data())
 
           items.forEach(([id, item]) => {
-            solves.push({ teamId: doc.id, moment: item.timestamp, flag: item.flag, challengeId: id })
+            solves.push({ teamId: doc.id, moment: item.timestamp, flag: item.flag, challengeId: id, proof: item.proof })
           })
         })
 
@@ -248,7 +248,7 @@ const prepareDatabase = (
       try {
         return await getSolves()
       } catch (err) {
-        throw new (resolveFirebaseError(err))(err.message)
+        throw new (resolveFirebaseError(err as FirebaseError))((err as FirebaseError).message)
       }
     },
     register: async (teamId, challengeId, flag) => {
@@ -262,7 +262,7 @@ const prepareDatabase = (
 
         return { [challengeId]: timestamp }
       } catch (err) {
-        throw new (resolveFirebaseError(err))(err.message)
+        throw new (resolveFirebaseError(err as FirebaseError))((err as FirebaseError).message)
       }
     },
     get: async id => {
@@ -285,7 +285,7 @@ const prepareDatabase = (
         if (err instanceof NotFoundError) {
           throw err
         }
-        throw new (resolveFirebaseError(err))(err.message)
+        throw new (resolveFirebaseError(err as FirebaseError))((err as FirebaseError).message)
       }
     }
   }
