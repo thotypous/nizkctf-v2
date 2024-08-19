@@ -1,4 +1,4 @@
-FROM node:12-alpine as builder
+FROM node:22 as builder
 
 WORKDIR /usr/src/app
 
@@ -8,7 +8,7 @@ RUN HUSKY_SKIP_INSTALL=true npm install
 
 RUN npm run build
 
-FROM node:12-alpine
+FROM node:22
 
 WORKDIR /usr/app
 
