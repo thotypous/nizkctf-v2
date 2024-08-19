@@ -19,4 +19,4 @@ export const REDIS_PASSWORD = process.env.REDIS_PASSWORD || ''
 
 export const SERVER_SECRET = process.env.SERVER_SECRET || ''
 
-export const SENTRY_DSN = 'https://b8c6bd61d8a44647a67205bf3138b8a6@o374062.ingest.sentry.io/5744526'
+export const SENTRY_DSN = 'https://06b712885aaec6a28dc9b88eda3a2e71@o4507801705709568.ingest.us.sentry.io/4507801713770496'
